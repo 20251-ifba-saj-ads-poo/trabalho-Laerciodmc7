@@ -50,7 +50,7 @@ public class MasterController {
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
-        setEmail(usuarioLogado.getEmail());
+        setEmail(usuarioLogado.getUserName());
     }
 
     @FXML

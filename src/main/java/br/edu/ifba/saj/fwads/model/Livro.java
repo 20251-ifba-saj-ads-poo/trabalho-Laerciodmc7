@@ -1,9 +1,14 @@
 package br.edu.ifba.saj.fwads.model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -11,63 +16,67 @@ public class Livro  extends AbstractEntity {
     @Column
     @NotBlank
     @Size(min = 5)
-    private String titulo;
+    private String nome;
     @Column
-    @NotBlank
+    @NotNull
     @Size(min = 5)
-    private String subTitulo;
+    private LocalDate dataLancamento;
     @Column
-    @NotBlank
-    @Size(min = 5)
-    private String ISBN;
     @ManyToOne
     private Autor autor;
+    @Column
+    @NotNull
+    private int qntPaginas;
+    @Column
+    @NotEmpty
+    private ArrayList<Categoria> categoria;
 
-    public Livro(@NotBlank @Size(min = 5) String titulo, @NotBlank @Size(min = 5) String subTitulo,
-            @NotBlank @Size(min = 5) String iSBN, Autor autor) {
-        this.titulo = titulo;
-        this.subTitulo = subTitulo;
-        ISBN = iSBN;
+    public Livro(String nome, LocalDate dataLancamento, Autor autor, int qntPaginas, ArrayList<Categoria> categoria) {
+        this.nome = nome;
+        this.dataLancamento = dataLancamento;
         this.autor = autor;
+        this.qntPaginas = qntPaginas;
+        this.categoria = categoria;
     }
 
-    public Livro() {
-    }
+  public String getNome(){
+    return this.nome;
+  }
 
-    public String getTitulo() {
-        return titulo;
-    }
+  public void setNome(String nome){
+    this.nome = nome;
+  }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+  public LocalDate getDataLacamento(){
+    return this.dataLancamento;
+  }
 
-    public String getSubTitulo() {
-        return subTitulo;
-    }
+  public LocalDate setDataLancamento(LocalDate dataLacamento){
+    this.dataLancamento = dataLacamento;
+  }
 
-    public void setSubTitulo(String subTitulo) {
-        this.subTitulo = subTitulo;
-    }
+  public Autor getAutor(){
+    return this.autor;
+  }
 
-    public String getISBN() {
-        return ISBN;
-    }
+  public void setAutor(Autor autor){
+    this.autor = autor;
+  }
 
-    public void setISBN(String iSBN) {
-        ISBN = iSBN;
-    }
+  public int getQntPaginas(){
+    return this.qntPaginas;
+  }
 
-    public Autor getAutor() {
-        return autor;
-    }
+  public void setQntPagina(int qntPaginas){
+    this.qntPaginas = qntPaginas;
+  }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
+  public ArrayList<Categoria> getCategoria(){
+    return this.categoria;
+  }
 
-    @Override
-    public String toString() {
-        return "Livro [titulo=" + titulo + ", subTitulo=" + subTitulo + ", ISBN=" + ISBN + ", autor=" + autor + "]";
-    }
+  public void setCateoria(ArrayList<Categoria> categoria){
+    this.categoria = categoria;
+  }
+
 }

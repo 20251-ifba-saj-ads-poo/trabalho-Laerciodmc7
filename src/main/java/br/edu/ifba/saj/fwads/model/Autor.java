@@ -1,10 +1,15 @@
 package br.edu.ifba.saj.fwads.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
 
 @Entity
 public class Autor extends AbstractEntity {
@@ -13,44 +18,41 @@ public class Autor extends AbstractEntity {
     @Size(min = 5)
     private String nome;
     @Column
-    @Email
-    private String email;
+    @NotNull
+    private LocalDate dataNascimento;
     @Column
-    @NotBlank
-    @Size(min = 11, max = 11)
-    private String CPF;
+    @NotNull    
+    @OneToMany
+    private ArrayList<Livro> livrosDisponiveis;
     
+    public Autor(String nome, LocalDate dataNascimento, ArrayList<Livro> livrosDisponiveis){
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.livrosDisponiveis = livrosDisponiveis;
+    }
+    
+    public String getNome(){
+        return this.nome;
+    }
 
-    
-    public Autor(@NotBlank @Size(min = 5) String nome, @Email String email,
-            @NotBlank @Size(min = 11, max = 11) String cPF) {
-        this.nome = nome;
-        this.email = email;
-        CPF = cPF;
-    }
-    public Autor() {
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
+    public void setNome(String nome){
         this.nome = nome;
     }
-    public String getEmail() {
-        return email;
+
+    public LocalDate getdataNascimento(){
+        return this.dataNascimento;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setDataNascimento(){
+        this.dataNascimento = dataNascimento;
     }
-    public String getCPF() {
-        return CPF;
+
+    public ArrayList<Livro> getLivrosDisponiveis(){
+        return this.livrosDisponiveis;
     }
-    public void setCPF(String cPF) {
-        CPF = cPF;
+
+    public void setLivrosDisponiveis(ArrayList<Livro> livrosDisponiveis) {
+        this.livrosDisponiveis = livrosDisponiveis;
     }
-    @Override
-    public String toString() {
-        return "Autor [nome=" + nome + ", email=" + email + ", CPF=" + CPF + "]";
-    }       
     
 }

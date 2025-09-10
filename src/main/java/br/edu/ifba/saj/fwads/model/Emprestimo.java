@@ -1,19 +1,17 @@
 package br.edu.ifba.saj.fwads.model;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.*;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
+import jakarta.persistence.ManyToOne; 
 
-
+@Entity
 public class Emprestimo extends AbstractEntity{
 
     @Column
     @NotNull
+    @ManyToOne
     private Usuario usuario;
     @Column
     @NotNull
