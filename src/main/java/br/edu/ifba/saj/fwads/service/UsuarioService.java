@@ -12,12 +12,12 @@ public class UsuarioService extends Service<Usuario> {
         super(Usuario.class);
     }
 
-    public Usuario validaLogin(String login, String senha) throws LoginInvalidoException {
+    public Usuario validaLogin(String userName, String senha) throws LoginInvalidoException {
         try {
-            return findByMap(Map.of("login", login, "senha", senha)).getFirst();
+            return findByMap(Map.of("login", userName, "senha", senha)).getFirst();
         } catch (NoSuchElementException e) {
             throw new LoginInvalidoException(
-                "Não foi possível localizar o usuário " + login + ", ou a senha esta errada");
+                "Não foi possível localizar o usuário " + userName + ", ou a senha esta errada");
         }
     }
 }

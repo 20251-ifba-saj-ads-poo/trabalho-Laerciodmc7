@@ -51,8 +51,8 @@ public class Livro  extends AbstractEntity {
     return this.dataLancamento;
   }
 
-  public LocalDate setDataLancamento(LocalDate dataLacamento){
-    this.dataLancamento = dataLacamento;
+  public void setDataLancamento(LocalDate dataLancamento){
+    this.dataLancamento = dataLancamento;
   }
 
   public Autor getAutor(){

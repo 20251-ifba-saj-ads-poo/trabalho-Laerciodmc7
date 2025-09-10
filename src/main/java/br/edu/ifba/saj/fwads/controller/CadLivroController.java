@@ -1,7 +1,10 @@
 package br.edu.ifba.saj.fwads.controller;
 
+import java.util.ArrayList;
+
 import br.edu.ifba.saj.fwads.model.Autor;
 import br.edu.ifba.saj.fwads.model.Livro;
+import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.Service;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -26,20 +29,20 @@ public class CadLivroController {
 
     private Service<Livro> serviceLivro = new Service<>(Livro.class);
     private Service<Autor> serviceAutor = new Service<>(Autor.class);
+    private Service<Usuario> serviceUsuario = new Service<>(Usuario.class);
 
     public void setListLivroController(ListLivroController listLivroController) {
         this.listLivroController = listLivroController;
     }
 
     @FXML
-    void salvarLivro(ActionEvent event) {
-        Livro novoLivro = new Livro(txTitulo.getText(),
-        txSubTitulo.getText(), 
-        txISBN.getText(),
-        slAutor.getSelectionModel().getSelectedItem());
-        serviceLivro.create(novoLivro);
+    void salvarUsuario(ActionEvent event) {
+        //criando novo usuario (instanciando a classe Usuario.java)
+        Usuario novoUsuario = new Usuario(txNomeCompleto.getText(), txUserName.getText(),
+         dpDataNascimento.getValue(), txCpf.getText(), txCriaSenha.getText(), new ArrayList<>(), 3);
+        serviceUsuario.create(novoUsuario);
         new Alert(AlertType.INFORMATION, 
-        "Livro:"+novoLivro.getTitulo()+" cadastrado com sucesso!").showAndWait();
+        "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();
         limparTela();
         if (listLivroController!=null) {
             listLivroController.loadLivroList();
