@@ -1,5 +1,5 @@
 \\Usuario já cadastrado
-MERGE INTO Usuario (id, login, senha, email) KEY(login) VALUES (RANDOM_UUID(), 'admin', 'admin', 'admin@admin.com');
+MERGE INTO Usuario (id, userName, senha) KEY(login) VALUES (RANDOM_UUID(), 'admin', 'admin');
 
 \\autores 
 MERGE INTO Autor (id, nome, data_nascimento)
@@ -22,6 +22,5 @@ MERGE INTO Autor (id, nome, data_nascimento)
 KEY(nome)
 VALUES (RANDOM_UUID(), 'J.K. Rowling', DATE '1965-07-31');
 
-\\livros 
-
+\\livros
 
