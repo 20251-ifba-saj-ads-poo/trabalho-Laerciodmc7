@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Autor extends AbstractEntity {
@@ -22,10 +23,10 @@ public class Autor extends AbstractEntity {
     private LocalDate dataNascimento;
     @Column
     @NotNull    
-    @OneToMany
-    private ArrayList<Livro> livrosDisponiveis;
+    @OneToMany(mappedBy = "autor")
+    private List<Livro> livrosDisponiveis;
     
-    public Autor(String nome, LocalDate dataNascimento, ArrayList<Livro> livrosDisponiveis){
+    public Autor(String nome, LocalDate dataNascimento, List<Livro> livrosDisponiveis){
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.livrosDisponiveis = livrosDisponiveis;
@@ -47,11 +48,11 @@ public class Autor extends AbstractEntity {
         this.dataNascimento = dataNascimento;
     }
 
-    public ArrayList<Livro> getLivrosDisponiveis(){
+    public List<Livro> getLivrosDisponiveis(){
         return this.livrosDisponiveis;
     }
 
-    public void setLivrosDisponiveis(ArrayList<Livro> livrosDisponiveis) {
+    public void setLivrosDisponiveis(List<Livro> livrosDisponiveis) {
         this.livrosDisponiveis = livrosDisponiveis;
     }
     
