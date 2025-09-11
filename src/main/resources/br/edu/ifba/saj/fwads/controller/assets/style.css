@@ -19,7 +19,7 @@
 
 
 .btn-login {
-    -fx-background-color: green;
+    -fx-background-color: rgb(87, 218, 179);
     -fx-background-radius: 25px;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .btn-cancelar {
-    -fx-background-color: rgb(12, 221, 221);
+    -fx-background-color: rgb(238, 46, 46);
     -fx-background-radius: 25px;
 }
 
@@ -44,7 +44,7 @@
     -fx-background-color: darkgreen;
 }
 
-.btn-menu:selected {
+.btn-menu-selected {
     -fx-background-color: lightgreen;
     -fx-background-radius: 0;
 }
