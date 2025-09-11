@@ -29,6 +29,7 @@ public class Livro  extends AbstractEntity {
     private int qntPaginas;
     @Column
     @NotEmpty
+    @ManyToOne
     private ArrayList<Categoria> categoria;
 
     public Livro(String nome, LocalDate dataLancamento, Autor autor, int qntPaginas, ArrayList<Categoria> categoria) {

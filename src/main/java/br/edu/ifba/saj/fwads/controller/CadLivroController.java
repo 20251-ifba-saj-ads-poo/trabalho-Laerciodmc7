@@ -11,24 +11,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.StringConverter;
 
 public class CadLivroController {
+   @FXML
+    private TextField TxUserName;
+
     @FXML
-    private TextField txTitulo;
+    private TextField txCpf;
+
     @FXML
-    private TextField txSubTitulo;
+    private TextField txNome;
+
     @FXML
-    private TextField txISBN;
-    @FXML
-    private ChoiceBox<Autor> slAutor;
+    private PasswordField txSenha;
+
 
     private ListLivroController listLivroController;
 
-    private Service<Livro> serviceLivro = new Service<>(Livro.class);
-    private Service<Autor> serviceAutor = new Service<>(Autor.class);
     private Service<Usuario> serviceUsuario = new Service<>(Usuario.class);
 
     public void setListLivroController(ListLivroController listLivroController) {
@@ -38,8 +41,8 @@ public class CadLivroController {
     @FXML
     void salvarUsuario(ActionEvent event) {
         //criando novo usuario (instanciando a classe Usuario.java)
-        Usuario novoUsuario = new Usuario(txNomeCompleto.getText(), txUserName.getText(),
-         dpDataNascimento.getValue(), txCpf.getText(), txCriaSenha.getText(), new ArrayList<>(), 3);
+        Usuario novoUsuario = new Usuario(txNome.getText(), TxUserName.getText(),
+          txCpf.getText(), txSenha.getText(), new ArrayList<>(), 3);
         serviceUsuario.create(novoUsuario);
         new Alert(AlertType.INFORMATION, 
         "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();
@@ -49,41 +52,16 @@ public class CadLivroController {
         }
     }
 
-    @FXML 
-    private void initialize() {
-        slAutor.setConverter(new StringConverter<Autor>() {
-            @Override
-            public String toString(Autor obj) {
-                if (obj != null) {
-                    return obj.getNome() + ":" + obj.getEmail();
-                }
-                return "";
-            }
-
-            @Override
-            public Autor fromString(String stringAutor) {
-                return serviceAutor.findAll()
-                    .stream()
-                    .filter(autor -> stringAutor.equals(autor.getNome() + ":" + autor.getEmail()))
-                    .findAny()
-                    .orElse(null);                
-            }
-        });
-        
-        carregarListaAutores();
-    }
 
     @FXML
     private void limparTela() {
-        txTitulo.setText("");
-        txSubTitulo.setText("");
-        txISBN.setText("");
-        slAutor.setValue(null);
+        txNome.setText("");
+        TxUserName.setText("");
+        txCpf.setText("");
+        txSenha.setText("");
         //new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();
     }
 
-    private void carregarListaAutores() {
-        slAutor.setItems(FXCollections.observableList(serviceAutor.findAll()));
-    }
+    
 
 }

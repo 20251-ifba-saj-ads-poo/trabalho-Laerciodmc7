@@ -20,9 +20,6 @@ public class Usuario extends AbstractEntity {
     @Size(min = 5)
     private String userName;
     @Column
-    @NotNull
-    private LocalDate dataNascimento;
-    @Column
     @NotBlank
     private String cpf;
     @Column
@@ -37,10 +34,9 @@ public class Usuario extends AbstractEntity {
     private int limiteEmprestimo;
 
 
-    public Usuario(String nomeCompleto, String userName, LocalDate dataNascimento, String cpf, String senha, ArrayList<Emprestimo> emprestimos, int limiteEmprestimo) {
+    public Usuario(String nomeCompleto, String userName, String cpf, String senha, ArrayList<Emprestimo> emprestimos, int limiteEmprestimo) {
         this.nomeCompleto = nomeCompleto;
         this.userName = userName;
-        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.senha = senha;
         this.emprestimos = emprestimos;
@@ -61,14 +57,6 @@ public class Usuario extends AbstractEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public String getCpf() {
@@ -108,7 +96,7 @@ public class Usuario extends AbstractEntity {
         return "Usuario{" +
                 "nomeCompleto='" + nomeCompleto + '\'' +
                 ", userName='" + userName + '\'' +
-                ", dataNascimento=" + dataNascimento +
+                ", dataNascimento="  +
                 ", cpf='" + cpf + '\'' +
                 ", senha='" + senha + '\'' +
                 ", emprestimos=" + emprestimos +
