@@ -20,28 +20,25 @@ import javafx.scene.shape.Circle;
 public class MasterController {
 
     @FXML
-    private Button menuItemCadAutor;
+    private Button bntBuscar;
 
     @FXML
-    private Button menuItemCadLivro;
+    private Button bntEmprestimos;
 
     @FXML
-    private Button menuItemHome;
+    private Button bntMeuPerfil;
 
     @FXML
-    private Button menuItemListAutor;
+    private Button bntSair;
 
     @FXML
-    private Button menuItemListLivro;
+    private Button bntSobre;
 
     @FXML
     private BorderPane masterPane;
 
     @FXML
     private VBox menu;
-
-    @FXML
-    private Label userEmail;
 
     @FXML
     private Circle userPicture;
@@ -75,6 +72,16 @@ public class MasterController {
         limparBotoes(event.getSource());
         masterPane.setCenter(new Pane());
     }
+
+    //chama a tela "SearchController"
+    @FXML
+    public void buscar(){
+        App.setRoot("controller/CadAutor.fxml");
+    }
+
+    public void emprestimos(){}
+
+
 
     private void limparBotoes(Object source) {
         menu.getChildren().forEach((node) -> {
