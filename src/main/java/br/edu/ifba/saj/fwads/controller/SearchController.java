@@ -1,13 +1,12 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.model.Autor;
+import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.service.Service;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
-public class CadAutorController {
+public class SearchController {
     @FXML
     private TextField txNome;
     @FXML
@@ -18,7 +17,7 @@ public class CadAutorController {
     private MasterController masterController;
     private ListAutorController listAutorController;
 
-    private Service<Autor> serviceAutor = new Service<>(Autor.class);
+    private Service<Livro> serviceLivro = new Service<>(Livro.class);
     
     public void setMasterController(MasterController masterController) {
         this.masterController = masterController;

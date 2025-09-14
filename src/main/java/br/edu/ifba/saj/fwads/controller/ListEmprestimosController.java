@@ -1,7 +1,6 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
-import br.edu.ifba.saj.fwads.model.Autor;
 import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.service.Service;
 import javafx.collections.FXCollections;
@@ -15,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ListLivroController {
+public class ListEmprestimosController {
 
     @FXML
     private TableColumn<Livro, String> clnAutor;
@@ -48,7 +47,7 @@ public class ListLivroController {
         Scene scene = new Scene(App.loadFXML("controller/CadLivro.fxml"), 800, 600);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
-        CadLivroController controller = (CadLivroController) App.getController();
+        CadUsuarioController controller = (CadUsuarioController) App.getController();
         controller.setListLivroController(this);
 
         stage.showAndWait();

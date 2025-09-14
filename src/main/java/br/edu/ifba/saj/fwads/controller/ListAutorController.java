@@ -43,7 +43,7 @@ public class ListAutorController {
         Scene scene = new Scene(App.loadFXML("controller/CadAutor.fxml"), 800, 600);            
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL); 
-        CadAutorController controller = (CadAutorController) App.getController();
+        SearchController controller = (SearchController) App.getController();
         controller.setListAutorController(this);
         stage.showAndWait();            
     }

@@ -2,22 +2,17 @@ package br.edu.ifba.saj.fwads.controller;
 
 import java.util.ArrayList;
 
-import br.edu.ifba.saj.fwads.model.Autor;
 import br.edu.ifba.saj.fwads.model.Emprestimo;
-import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.Service;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.util.StringConverter;
 
-public class CadLivroController {
+public class CadUsuarioController {
    @FXML
     private TextField TxUserName;
 
@@ -31,11 +26,11 @@ public class CadLivroController {
     private PasswordField txSenha;
 
 
-    private ListLivroController listLivroController;
+    private ListEmprestimosController listLivroController;
 
     private Service<Usuario> serviceUsuario = new Service<>(Usuario.class);
 
-    public void setListLivroController(ListLivroController listLivroController) {
+    public void setListLivroController(ListEmprestimosController listLivroController) {
         this.listLivroController = listLivroController;
     }
 
