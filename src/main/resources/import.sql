@@ -2,7 +2,7 @@
 MERGE INTO Usuario (id, userName, senha) KEY(login) VALUES (RANDOM_UUID(), 'admin', 'admin');
 
 ---
--- Autores já definidos
+-- Autores
 MERGE INTO Autor (id, nome, data_nascimento) KEY(nome)
 VALUES (RANDOM_UUID(), 'Machado de Assis', DATE '1839-06-21');
 
@@ -21,7 +21,6 @@ VALUES (RANDOM_UUID(), 'J.K. Rowling', DATE '1965-07-31');
 
 ---
 -- Categorias
--- Adicionando categorias relevantes para os autores
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Ficção Científica');
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Literatura Brasileira');
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Realismo');
@@ -34,7 +33,6 @@ MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Drama');
 
 ---
 -- Livros
--- Associando os livros aos autores e categorias
 -- Livros de Machado de Assis (Literatura Brasileira, Realismo, Romance)
 MERGE INTO Livro (id, titulo, autor_id) KEY(titulo)
 SELECT RANDOM_UUID(), 'Memórias Póstumas de Brás Cubas', a.id FROM Autor a WHERE a.nome = 'Machado de Assis';

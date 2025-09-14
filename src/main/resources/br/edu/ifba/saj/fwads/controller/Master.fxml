@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="masterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="main" stylesheets="@assets/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.MasterController">
+<BorderPane fx:id="masterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="main" stylesheets="@assets/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.MasterController">
     <top>
-        <AnchorPane prefHeight="100.0" styleClass="top" stylesheets="@assets/style.css" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="100.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="top" stylesheets="@assets/style.css" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="100.0" fitWidth="292.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@assets/LogoH.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="userEmail" layoutX="758.0" layoutY="32.0" onMouseClicked="#logOff" text="email@email" textFill="#FFFFFF" AnchorPane.rightAnchor="15.0">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <graphic>
-                        <Circle fx:id="userPicture" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-                    </graphic>
-                </Label>
                 <Button fx:id="menuItemHome" alignment="TOP_LEFT" disable="true" layoutX="88.0" layoutY="-40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showHome" prefHeight="35.0" styleClass="btn-menu-selected" stylesheets="@assets/style.css" text="Home" textFill="WHITE">
                     <padding>
                         <Insets bottom="5.0" left="10.0" />
@@ -43,9 +36,9 @@
             </children></AnchorPane>
     </top>
     <left>
-        <VBox fx:id="menu" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="500.0" prefWidth="245.0" styleClass="left" stylesheets="@assets/style.css" BorderPane.alignment="TOP_LEFT">
+        <VBox fx:id="menu" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="500.0" prefWidth="245.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="left" stylesheets="@assets/style.css" BorderPane.alignment="TOP_LEFT">
             <children>
-                <Button fx:id="menuItemCadAutor" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCadAutor" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastro Autores" textFill="WHITE">
+                <Button fx:id="menuItemCadAutor" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCadAutor" prefHeight="35.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastro Autores" textFill="WHITE">
                     <padding>
                         <Insets bottom="5.0" left="10.0" />
                     </padding>
@@ -68,14 +61,14 @@
                         <Font size="25.0" />
                     </font>
                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);">
                             <image>
                                 <Image url="@assets/study.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="menuItemListAutor" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListAutor" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Listar Autores" textFill="WHITE">
+                <Button fx:id="menuItemListAutor" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListAutor" prefHeight="35.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="btn-menu" stylesheets="@assets/style.css" text="Listar Autores" textFill="WHITE">
                     <padding>
                         <Insets bottom="5.0" left="10.0" />
                     </padding>
