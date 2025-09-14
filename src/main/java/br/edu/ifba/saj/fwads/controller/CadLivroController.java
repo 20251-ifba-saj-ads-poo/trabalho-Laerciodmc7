@@ -3,6 +3,7 @@ package br.edu.ifba.saj.fwads.controller;
 import java.util.ArrayList;
 
 import br.edu.ifba.saj.fwads.model.Autor;
+import br.edu.ifba.saj.fwads.model.Emprestimo;
 import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.Service;
@@ -42,7 +43,7 @@ public class CadLivroController {
     void salvarUsuario(ActionEvent event) {
         //criando novo usuario (instanciando a classe Usuario.java)
         Usuario novoUsuario = new Usuario(txNome.getText(), TxUserName.getText(),
-          txCpf.getText(), txSenha.getText(), new ArrayList<>(), 3);
+          txCpf.getText(), txSenha.getText(), new ArrayList<Emprestimo>(), 3);
         serviceUsuario.create(novoUsuario);
         new Alert(AlertType.INFORMATION, 
         "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();

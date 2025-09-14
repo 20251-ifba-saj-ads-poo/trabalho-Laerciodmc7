@@ -28,26 +28,4 @@ public class CadAutorController {
         this.listAutorController = listAutorController;
     }
 
-    @FXML
-    private void salvarAutor() {
-        Autor novoAutor = new Autor(txNome.getText(),
-                    txEmail.getText(), 
-                    txCPF.getText());
-        serviceAutor.create(novoAutor);
-        new Alert(AlertType.INFORMATION, 
-        "Autor:"+novoAutor.getNome()+" cadastrado com sucesso").showAndWait();
-        limparTela();
-        if (listAutorController!= null) {
-            listAutorController.loadAutorList();
-        }
-    }
-    @FXML
-    private void limparTela() {
-        txNome.setText("");
-        txEmail.setText("");
-        txCPF.setText("");
-        //masterController.showFXMLFile("ListAutor.fxml");
-        //new Alert(AlertType.INFORMATION, serviceAutor.findAll().toString()).showAndWait();
-    }
-
 }
