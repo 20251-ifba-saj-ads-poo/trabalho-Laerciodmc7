@@ -42,6 +42,12 @@ public class LoginController {
     }
 
     @FXML
+    public void criarUsuario(ActionEvent event){
+        App.setRoot("controller/CadUsuarioController");
+    }
+
+
+    @FXML
     void limparCampos(ActionEvent event) {
         txUsuario.setText("");
         txSenha.setText("");

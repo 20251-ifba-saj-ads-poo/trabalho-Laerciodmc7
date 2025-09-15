@@ -47,7 +47,6 @@ public class MasterController {
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
-        setEmail(usuarioLogado.getUserName());
     }
 
     @FXML
@@ -75,20 +74,22 @@ public class MasterController {
 
     //chama a tela "SearchController"
     @FXML
-    public void buscar(){
+    public void buscar() {
         App.setRoot("controller/CadAutor.fxml");
     }
 
-    public void emprestimos(){}
-
+    @FXML
+    public void showEmprestimos(ActionEvent event) {
+        App.setRoot("controller/ListLivro.fxml");
+    }
 
 
     private void limparBotoes(Object source) {
         menu.getChildren().forEach((node) -> {
-            if (node instanceof Button btn) {
-                node.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"), false);
-            }
-        }
+                    if (node instanceof Button btn) {
+                        node.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"), false);
+                    }
+                }
 
         );
         if (source instanceof Button btn) {
@@ -135,7 +136,4 @@ public class MasterController {
         return null;
     }
 
-    private void setEmail(String email) {
-        userEmail.setText(email);
-    }
 }

@@ -5,6 +5,8 @@ module br.edu.ifba.saj.fwads {
     requires jakarta.persistence;
     requires jakarta.validation;
     requires net.bytebuddy;
+    requires java.desktop;
+
 
 
     opens br.edu.ifba.saj.fwads.controller to javafx.fxml, org.hibernate.orm.core;    
