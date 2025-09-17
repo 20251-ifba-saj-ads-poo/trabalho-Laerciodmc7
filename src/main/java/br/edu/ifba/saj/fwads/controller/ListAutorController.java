@@ -2,39 +2,73 @@ package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.model.Autor;
+import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.Service;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ListAutorController {
     @FXML
-    private TableView<Autor> tblAutor;
+    private TableView<Usuario> tabelaUsuario;
 
     @FXML
-    private TableColumn<Autor, String> columnNome;
+    private TableColumn<Usuario, String> columnNome;
+
     @FXML
-    private TableColumn<Autor, String> columnEmail;
+    private TableColumn<Usuario, String> columnUserName;
+
     @FXML
-    private TableColumn<Autor, String> columnCPF;
+    private TableColumn<Usuario, String> columnCPF;
+
+    @FXML
+    private TableColumn<Usuario, String> columnSenha;
+
+
+    private static Usuario usuarioLogado;
+
+    public Usuario getUsuarioLogado(){
+        return this.usuarioLogado;
+    }
 
 
     @FXML
     public void initialize() {
+        // 1. Associar as colunas aos atributos da classe Usuario
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        columnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-        loadAutorList();
+        columnUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        columnCPF.setCellValueFactory(new PropertyValueFactory<>("cpfUsuario"));
+        columnSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
+
+        // 2. Obter o usuário logado e popular a tabela
+        // Assumindo que você tem uma forma de obter o usuário logado
+         usuarioLogado = getUsuarioLogado();
+
+        if (usuarioLogado != null) {
+            tabelaUsuario.setItems(FXCollections.observableArrayList(usuarioLogado));
+        } else {
+            System.out.println("Nenhum usuário logado.");
+        }
     }
-    
+
     public void loadAutorList() {
-        tblAutor.setItems(FXCollections.observableList(new Service(Autor.class).findAll()));
+        //tblAutor.setItems(FXCollections.observableList(new Service(Usuario.class).findAll()));
     }
+
+    @FXML
+   public void showMenu(ActionEvent event){
+        App.setRoot("controller/Master.fxml");
+   }
+
 
     @FXML
     public void showNovoAutor() {

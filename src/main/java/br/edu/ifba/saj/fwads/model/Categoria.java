@@ -8,20 +8,20 @@ import jakarta.persistence.Entity;
 public class Categoria extends AbstractEntity{
     @Column
     @NotBlank
-    private String nomeCategoria;
+    private String nome;
 
     public Categoria(@NotBlank String nomeCategoria){
-        this.nomeCategoria = nomeCategoria;
+        this.nome = nomeCategoria;
     }
 
     public Categoria(){}
 
 
     public String getNomeCategoria(){
-        return this.nomeCategoria;
+        return this.nome;
     }
 
     public void setNomeCategoria(String getNomeCategoria){
-        this.nomeCategoria = nomeCategoria;
+        this.nome = nome;
     }
 }

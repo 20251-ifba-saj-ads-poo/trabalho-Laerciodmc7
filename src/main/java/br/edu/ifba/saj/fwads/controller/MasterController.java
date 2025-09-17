@@ -60,7 +60,7 @@ public class MasterController {
     @FXML
     public void buscar(ActionEvent event) {
         limparBotoes(event.getSource());
-        App.setRoot("controller/CadAutor.fxml");
+        App.setRoot("controller/SearchLivro.fxml");
     }
 
     @FXML
@@ -91,6 +91,7 @@ public class MasterController {
                 .ifPresent(response -> {
                     App.setRoot("controller/Login.fxml");
                 });
+
     }
 
 
