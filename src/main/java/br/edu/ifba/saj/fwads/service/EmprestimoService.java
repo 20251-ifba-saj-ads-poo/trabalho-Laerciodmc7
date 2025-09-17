@@ -17,7 +17,7 @@ public class EmprestimoService extends Service<Emprestimo> {
             throw new EmprestimoInvalidoException("Dados do empréstimo inválidos.");
         }
 
-        if(usuario.getEmprestimos().size() == usuario.getLimiteEmprestimo()){
+        if(usuario.getEmprestimos().size() == 3){
             throw new EmprestimoInvalidoException("Você já atingiu seu limite de emprestimos.");
         }
 
@@ -25,8 +25,12 @@ public class EmprestimoService extends Service<Emprestimo> {
             throw new EmprestimoInvalidoException("Este livro já esta na sua lista de emprestimos.");
         }
 
+        //emprestimo.setDataDevolução();
+
         //gerando emprestimo
         create(emprestimo);
+        //adicionando na lista de emprestimos
+        usuario.addEmprestimo(emprestimo);
     }
 
     public void verificaDevolução(Emprestimo emprestimo, Livro livro) throws Exception{

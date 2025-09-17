@@ -18,20 +18,27 @@ public class Autor extends AbstractEntity {
     @NotBlank
     @Size(min = 5)
     private String nome;
+
     @Column
     @NotNull
     private LocalDate dataNascimento;
-    @Column
-    @NotNull    
+
     @OneToMany(mappedBy = "autor")
-    private List<Livro> livrosDisponiveis;
-    
-    public Autor(String nome, LocalDate dataNascimento, List<Livro> livrosDisponiveis){
+    @NotNull
+    private List<Livro> livrosDisponiveis = new ArrayList<>();
+
+    public Autor(
+            @NotBlank @Size(min = 5) String nome,
+            @NotNull LocalDate dataNascimento,
+            List<Livro> livrosDisponiveis
+    ) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.livrosDisponiveis = livrosDisponiveis;
+        this.livrosDisponiveis = livrosDisponiveis != null ? livrosDisponiveis : new ArrayList<>();
     }
-    
+
+    public Autor(){}
+
     public String getNome(){
         return this.nome;
     }

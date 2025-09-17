@@ -38,29 +38,53 @@
     <left>
         <VBox fx:id="menu" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="500.0" prefWidth="245.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="left" stylesheets="@assets/style.css" BorderPane.alignment="TOP_LEFT">
          <children>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" text="Home" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#showHome" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Home" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/HomeIcon.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" text="Emprestimos" textFill="WHITE">
+            <Button fx:id="bntBuscar" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#buscar" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Buscar" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/pesquisa.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" text="Home" textFill="WHITE">
+            <Button fx:id="bntEmprestimos" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#showEmprestimos" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Emprestimos" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/EmprestimosIcon.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" text="Home" textFill="WHITE">
+            <Button fx:id="bntMeuPerfil" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#showCadastro" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Minhas informações" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/MeuPerfilIcon.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" text="Home" textFill="WHITE">
+            <Button fx:id="bntSobre" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#showSobre" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Sobre" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/SobreIcon.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="bntSair" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#sair" prefHeight="50.0" prefWidth="252.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Sair" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/SairIcon.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
          </children></VBox>

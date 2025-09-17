@@ -10,9 +10,12 @@ public class Categoria extends AbstractEntity{
     @NotBlank
     private String nomeCategoria;
 
-    public Categoria(String nomeCategoria){
+    public Categoria(@NotBlank String nomeCategoria){
         this.nomeCategoria = nomeCategoria;
     }
+
+    public Categoria(){}
+
 
     public String getNomeCategoria(){
         return this.nomeCategoria;

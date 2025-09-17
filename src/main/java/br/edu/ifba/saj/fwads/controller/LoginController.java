@@ -43,7 +43,7 @@ public class LoginController {
 
     @FXML
     public void criarUsuario(ActionEvent event){
-        App.setRoot("controller/CadUsuarioController");
+        App.setRoot("controller/CadUsuario.fxml");
     }
 
 

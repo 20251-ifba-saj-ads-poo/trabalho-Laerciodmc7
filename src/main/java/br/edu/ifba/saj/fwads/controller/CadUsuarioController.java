@@ -17,13 +17,13 @@ import javafx.scene.control.Alert.AlertType;
 
 public class CadUsuarioController {
    @FXML
-    private TextField TxUserName;
+    private TextField txUserName;
 
     @FXML
     private TextField txCpf;
 
     @FXML
-    private TextField txNome;
+    private TextField txNomeCompleto;
 
     @FXML
     private PasswordField txSenha;
@@ -39,23 +39,31 @@ public class CadUsuarioController {
 
     @FXML
     void salvarUsuario(ActionEvent event) throws CadastroInvalidoException {
-        //instancia a classe usuario associando as entradas na tela de cadastro com os atributos da classe
-        Usuario novoUsuario = new Usuario(txNome.getText(), TxUserName.getText(),
-          txCpf.getText(), txSenha.getText(), new ArrayList<Emprestimo>(), 3);
+        try {
+            //instancia a classe usuario associando as entradas na tela de cadastro com os atributos da classe
+            Usuario novoUsuario = new Usuario(txNomeCompleto.getText(), txUserName.getText(),
+                    txCpf.getText(), txSenha.getText(), new ArrayList<Emprestimo>());
             usuarioService.validaCadastro(novoUsuario); //valida o cadastro do usuario
-        new Alert(AlertType.INFORMATION,
-        "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();
-        limparTela();
-        if (listLivroController!=null) {
-            listLivroController.loadLivroList();
+            new Alert(AlertType.INFORMATION,
+                    "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();
+            limparTela();
+            if (listLivroController!=null) {
+                listLivroController.loadLivroList();
+            }
+        }
+        catch (CadastroInvalidoException e){
+            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e){
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entra em contato com a equipe de desenvolvimento").showAndWait();
         }
     }
 
 
     @FXML
     private void limparTela() {
-        txNome.setText("");
-        TxUserName.setText("");
+        txNomeCompleto.setText("");
+        txUserName.setText("");
         txCpf.setText("");
         txSenha.setText("");
         //new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();

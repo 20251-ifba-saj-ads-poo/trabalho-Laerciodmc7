@@ -9,30 +9,43 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Emprestimo extends AbstractEntity{
 
-    @Column
-    @NotNull
     @ManyToOne
+    @NotNull
     private Usuario usuario;
-    @Column
+
+    @ManyToOne
     @NotNull
     private Livro livroEmprestado;
+
     @Column
     @NotNull
     private LocalDate dataEmprestimo;
+
     @Column
     @NotNull
     private LocalDate dataDevolução;
+
     @Column
     @NotBlank
     private String status;
 
-    public Emprestimo(Usuario usuario, Livro livroEmprestado, LocalDate dataEmprestimo, LocalDate dataDevolução, String status) {
+    public Emprestimo(
+            @NotNull Usuario usuario,
+            @NotNull Livro livroEmprestado,
+            @NotNull LocalDate dataEmprestimo,
+            @NotNull LocalDate dataDevolução,
+            @NotBlank String status
+    ) {
         this.usuario = usuario;
         this.livroEmprestado = livroEmprestado;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolução = dataDevolução;
         this.status = status;
     }
+
+    public Emprestimo(){}
+
+
 
     public Usuario getUsuario() {
         return usuario;

@@ -14,7 +14,7 @@ public class UsuarioService extends Service<Usuario> {
 
     public Usuario validaLogin(String userName, String senha) throws LoginInvalidoException {
         try {
-            return findByMap(Map.of("login", userName, "senha", senha)).getFirst();
+            return findByMap(Map.of("userName", userName, "senha", senha)).getFirst();
         } catch (NoSuchElementException e) {
             throw new LoginInvalidoException(
                 "Não foi possível localizar o usuário " + userName + ", ou a senha esta errada");
@@ -23,10 +23,10 @@ public class UsuarioService extends Service<Usuario> {
 
     public void validaCadastro(Usuario usuario) throws CadastroInvalidoException{
 
-        if(usuario.getNomeCompleto() == null || usuario.getNomeCompleto().isBlank()){
+        if(usuario.getNomeCompleto().length() < 5|| usuario.getNomeCompleto() == null || usuario.getNomeCompleto().isBlank()){
             throw new CadastroInvalidoException("O nome completo não pode ser vazio.");
         }
-        if (usuario.getUserName() == null || usuario.getUserName().isBlank()) {
+        if (usuario.getUserName().length() < 5 || usuario.getUserName() == null || usuario.getUserName().isBlank()) {
             throw new CadastroInvalidoException("O nome de usuário não pode ser vazio.");
         }
         if (usuario.getSenha().length() < 4 || usuario.getSenha().isBlank()) {

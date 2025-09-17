@@ -1,12 +1,12 @@
 package br.edu.ifba.saj.fwads.model;
 
 import java.util.UUID;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Usuario extends AbstractEntity {
@@ -15,33 +15,42 @@ public class Usuario extends AbstractEntity {
     @NotBlank
     @Size(min = 5)
     private String nomeCompleto;
+
     @Column
     @NotBlank
     @Size(min = 5)
     private String userName;
+
     @Column
     @NotBlank
     private String cpf;
+
     @Column
     @NotBlank
     private String senha;
-    @Column
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotEmpty
-    @OneToOne
-    private ArrayList<Emprestimo> emprestimos;
-    @Column
-    @NotNull
-    private int limiteEmprestimo;
+    private List<Emprestimo> emprestimos;
 
-
-    public Usuario(String nomeCompleto, String userName, String cpf, String senha, ArrayList<Emprestimo> emprestimos, int limiteEmprestimo) {
+    public Usuario(
+            @NotBlank @Size(min = 5) String nomeCompleto,
+            @NotBlank @Size(min = 5) String userName,
+            @NotBlank String cpf,
+            @NotBlank String senha,
+            @NotEmpty List<Emprestimo> emprestimos
+    ) {
         this.nomeCompleto = nomeCompleto;
         this.userName = userName;
         this.cpf = cpf;
         this.senha = senha;
         this.emprestimos = emprestimos;
-        this.limiteEmprestimo = limiteEmprestimo;
     }
+
+    public Usuario(){
+
+    }
+
 
     public String getNomeCompleto() {
         return nomeCompleto;
@@ -75,21 +84,23 @@ public class Usuario extends AbstractEntity {
         this.senha = senha;
     }
 
-    public ArrayList<Emprestimo> getEmprestimos() {
+    public List<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
 
-    public void setEmprestimos(ArrayList<Emprestimo> emprestimos) {
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
         this.emprestimos = emprestimos;
     }
 
-    public int getLimiteEmprestimo() {
-        return limiteEmprestimo;
+    public void addEmprestimo(Emprestimo emprestimo){
+        this.emprestimos.add(emprestimo);
     }
 
-    public void setLimiteEmprestimo(int limiteEmprestimo) {
-        this.limiteEmprestimo = limiteEmprestimo;
+    public void removerEmprestimo(Emprestimo emprestimo){
+        this.emprestimos.remove(emprestimo);
     }
+
+
 
     @Override
     public String toString() {
@@ -100,7 +111,6 @@ public class Usuario extends AbstractEntity {
                 ", cpf='" + cpf + '\'' +
                 ", senha='" + senha + '\'' +
                 ", emprestimos=" + emprestimos +
-                ", limiteEmprestimo=" + limiteEmprestimo +
                 '}';
     }
 }

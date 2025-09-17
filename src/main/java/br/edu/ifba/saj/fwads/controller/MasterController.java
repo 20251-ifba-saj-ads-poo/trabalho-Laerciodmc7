@@ -50,7 +50,41 @@ public class MasterController {
     }
 
     @FXML
-    void logOff(MouseEvent event) {
+    void showHome(ActionEvent event) {
+        limparBotoes(event.getSource());
+        masterPane.setCenter(new Pane());
+
+    }
+
+    //chama a tela "SearchController"
+    @FXML
+    public void buscar(ActionEvent event) {
+        limparBotoes(event.getSource());
+        App.setRoot("controller/CadAutor.fxml");
+    }
+
+    @FXML
+    public void showEmprestimos(ActionEvent event) {
+        limparBotoes(event.getSource());
+        App.setRoot("controller/ListLivro.fxml");
+    }
+
+    @FXML
+    public void showCadastro(ActionEvent event){
+        limparBotoes(event.getSource());
+        App.setRoot("controller/ListCadastro.fxml");
+    }
+
+
+    @FXML
+    public void showSobre(ActionEvent event){
+
+    }
+
+
+
+    @FXML
+    public void sair(ActionEvent event){
         Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja realmente sair??", ButtonType.YES, ButtonType.NO);
         alert.showAndWait()
                 .filter(response -> response == ButtonType.YES)
@@ -59,29 +93,6 @@ public class MasterController {
                 });
     }
 
-    @FXML
-    void showHome(ActionEvent event) {
-        limparBotoes(event.getSource());
-        masterPane.setCenter(new Pane());
-
-    }
-
-    @FXML
-    void showUsuarios(ActionEvent event) {
-        limparBotoes(event.getSource());
-        masterPane.setCenter(new Pane());
-    }
-
-    //chama a tela "SearchController"
-    @FXML
-    public void buscar() {
-        App.setRoot("controller/CadAutor.fxml");
-    }
-
-    @FXML
-    public void showEmprestimos(ActionEvent event) {
-        App.setRoot("controller/ListLivro.fxml");
-    }
 
 
     private void limparBotoes(Object source) {
@@ -95,31 +106,6 @@ public class MasterController {
         if (source instanceof Button btn) {
             btn.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"), true);
         }
-    }
-
-    @FXML
-    void showCadAutor(ActionEvent event) {
-        limparBotoes(event.getSource());
-        SearchController controller = (SearchController) showFXMLFile("CadAutor.fxml");
-        controller.setMasterController(this);
-    }
-
-    @FXML
-    void showListAutor(ActionEvent event) {
-        limparBotoes(event.getSource());
-        showFXMLFile("ListAutor.fxml");
-    }
-
-    @FXML
-    void showListLivro(ActionEvent event) {
-        limparBotoes(event.getSource());
-        showFXMLFile("ListLivro.fxml");
-    }
-
-    @FXML
-    void showCadLivro(ActionEvent event) {
-        limparBotoes(event.getSource());
-        showFXMLFile("CadLivro.fxml");
     }
 
     public Object showFXMLFile(String resourceName) {

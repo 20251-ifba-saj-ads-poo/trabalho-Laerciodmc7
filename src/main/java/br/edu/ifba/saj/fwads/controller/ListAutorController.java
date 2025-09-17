@@ -39,13 +39,12 @@ public class ListAutorController {
     @FXML
     public void showNovoAutor() {
         
-        Stage stage = new Stage();            
+        /*Stage stage = new Stage();
         Scene scene = new Scene(App.loadFXML("controller/CadAutor.fxml"), 800, 600);            
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL); 
-        SearchController controller = (SearchController) App.getController();
-        controller.setListAutorController(this);
-        stage.showAndWait();            
+        SearchLivroController controller = (SearchLivroController) App.getController();controller.setListAutorController(this);
+        stage.showAndWait();*/
     }
 
 }
