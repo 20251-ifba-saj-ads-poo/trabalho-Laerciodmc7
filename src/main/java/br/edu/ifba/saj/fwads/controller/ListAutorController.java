@@ -49,8 +49,6 @@ public class ListAutorController {
         columnCPF.setCellValueFactory(new PropertyValueFactory<>("cpfUsuario"));
         columnSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
 
-        // 2. Obter o usuário logado e popular a tabela
-        // Assumindo que você tem uma forma de obter o usuário logado
          usuarioLogado = getUsuarioLogado();
 
         if (usuarioLogado != null) {

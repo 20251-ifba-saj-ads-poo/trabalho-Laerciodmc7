@@ -1,11 +1,9 @@
 package br.edu.ifba.saj.fwads.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,21 +22,30 @@ public class Autor extends AbstractEntity {
     private LocalDate dataNascimento;
 
     @OneToMany(mappedBy = "autor")
-    @NotNull
-    private List<Livro> livrosDisponiveis = new ArrayList<>();
+    private List<Livro> livrosLancados = new ArrayList<>();
+
+
+    public Autor() {}
+
+    public Autor(
+            @NotBlank @Size(min = 5) String nome,
+            @NotNull LocalDate dataNascimento
+    ) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+    }
 
     public Autor(
             @NotBlank @Size(min = 5) String nome,
             @NotNull LocalDate dataNascimento,
-            List<Livro> livrosDisponiveis
+            List<Livro> livrosLancados
     ) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.livrosDisponiveis = livrosDisponiveis != null ? livrosDisponiveis : new ArrayList<>();
+        this.livrosLancados = livrosLancados != null ? livrosLancados : new ArrayList<>();
     }
 
-    public Autor(){}
-
+    // Getters e Setters (corrigidos)
     public String getNome(){
         return this.nome;
     }
@@ -47,20 +54,19 @@ public class Autor extends AbstractEntity {
         this.nome = nome;
     }
 
-    public LocalDate getdataNascimento(){
+    public LocalDate getDataNascimento(){
         return this.dataNascimento;
     }
 
-    public void setDataNascimento(){
+    public void setDataNascimento(LocalDate dataNascimento){
         this.dataNascimento = dataNascimento;
     }
 
-    public List<Livro> getLivrosDisponiveis(){
-        return this.livrosDisponiveis;
+    public List<Livro> getLivrosLancados(){
+        return this.livrosLancados;
     }
 
-    public void setLivrosDisponiveis(List<Livro> livrosDisponiveis) {
-        this.livrosDisponiveis = livrosDisponiveis;
+    public void setLivrosLancados(List<Livro> livrosLancados) {
+        this.livrosLancados = livrosLancados;
     }
-    
 }

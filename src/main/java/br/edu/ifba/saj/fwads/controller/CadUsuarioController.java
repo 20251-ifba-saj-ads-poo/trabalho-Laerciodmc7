@@ -2,6 +2,7 @@ package br.edu.ifba.saj.fwads.controller;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.exception.CadastroInvalidoException;
 import br.edu.ifba.saj.fwads.model.Emprestimo;
 import br.edu.ifba.saj.fwads.model.Usuario;
@@ -66,6 +67,7 @@ public class CadUsuarioController {
         txUserName.setText("");
         txCpf.setText("");
         txSenha.setText("");
+        App.setRoot("controller/Login.fxml");
         //new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();
     }
 

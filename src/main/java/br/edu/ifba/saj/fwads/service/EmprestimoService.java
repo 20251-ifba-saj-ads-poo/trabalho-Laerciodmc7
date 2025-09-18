@@ -26,7 +26,6 @@ public class EmprestimoService extends Service<Emprestimo> {
         }
 
         //emprestimo.setDataDevolução();
-
         //gerando emprestimo
         create(emprestimo);
         //adicionando na lista de emprestimos

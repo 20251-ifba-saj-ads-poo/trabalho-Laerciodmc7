@@ -17,42 +17,36 @@ import javafx.stage.Stage;
 public class ListEmprestimosController {
 
     @FXML
-    private TableColumn<Livro, String> clnAutor;
+    private TableColumn<Livro, String> tblNome;
 
     @FXML
-    private TableColumn<Livro, String> clnISBN;
+    private TableColumn<Livro, String> tblDataEmprestimo;
 
     @FXML
-    private TableColumn<Livro, String> clnTitulo;
+    private TableColumn<Livro, String> tblDataDevolução;
 
     @FXML
-    private TableView<Livro> tblAutor;
+    private TableColumn<Livro, String> tblStatus;
+
+    @FXML
+    private TableView tblEmprestimos;
 
     @FXML
     public void initialize() {
-        clnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        clnISBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-        clnAutor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor().getNome()));
+        tblNome.setCellValueFactory(new PropertyValueFactory<>("livroEmprestado"));
+        tblStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tblDataDevolução.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor().getNome()));
         loadLivroList();
     }
-    
+
     public void loadLivroList(){
-        tblAutor.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
+        tblEmprestimos.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
     }
 
-    @FXML
-    void showNovoLivro(ActionEvent event) {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadLivro.fxml"), 800, 600);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadUsuarioController controller = (CadUsuarioController) App.getController();
-        controller.setListLivroController(this);
-
-        stage.showAndWait();
+    public void devolver(){
 
     }
+
 
 }
 

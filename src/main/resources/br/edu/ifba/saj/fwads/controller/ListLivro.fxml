@@ -19,12 +19,12 @@
       </ButtonBar>
    </bottom>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" BorderPane.alignment="CENTER">
+      <TableView fx:id="tblEmprestimos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="130.0" text="Nome" />
-          <TableColumn prefWidth="155.0" text="Data de emprestimo" />
-            <TableColumn prefWidth="155.0" text="Data de devolução" />
-            <TableColumn prefWidth="130.0" text="Status" />
+          <TableColumn fx:id="tblNome" prefWidth="130.0" text="Nome" />
+          <TableColumn fx:id="tblDataEmprestimo" prefWidth="155.0" text="Data de emprestimo" />
+            <TableColumn fx:id="tblDataDevolução" prefWidth="155.0" text="Data de devolução" />
+            <TableColumn fx:id="tblStatus" prefWidth="130.0" text="Status" />
         </columns>
       </TableView>
    </center>

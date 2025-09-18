@@ -15,10 +15,10 @@ import java.util.List;
 public class SearchLivroController {
 
     @FXML
-    private TextField txPesquisar;
+    private TextField txPesquisa;
 
 
-    private BuscaService buscaService;
+    private BuscaService buscaService = new BuscaService();
 
     @FXML
     private TableView<Livro> tabelaResultados;
@@ -29,7 +29,7 @@ public class SearchLivroController {
 
     @FXML
     void buscaLivro(ActionEvent event) {
-        String pesquisa = txPesquisar.getText();
+        String pesquisa = txPesquisa.getText();
         if (pesquisa == null || pesquisa.isBlank()) {
             new Alert(Alert.AlertType.WARNING, "Nenhum parametro de busca foi encontrado").showAndWait();
             return;
@@ -37,7 +37,7 @@ public class SearchLivroController {
 
         try {
             List<Livro> resultados = buscaService.buscaValida(pesquisa);
-            tabelaResultados.getItems().setAll(resultados);
+            App.setRoot("controller/PegarEmprestimo.fxml");
 
             if (resultados.isEmpty()) {
                 new Alert(Alert.AlertType.INFORMATION, "Nenhum livro encontrado para: '" + pesquisa + "'.").showAndWait();
@@ -50,7 +50,6 @@ public class SearchLivroController {
 
     @FXML
     void limparTela(ActionEvent event) {
-        txPesquisar.setText("");
         App.setRoot("controller/Master.fxml");
     }
 

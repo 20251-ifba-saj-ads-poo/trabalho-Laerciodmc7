@@ -51,7 +51,6 @@ public class Usuario extends AbstractEntity {
 
     }
 
-
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -93,14 +92,13 @@ public class Usuario extends AbstractEntity {
     }
 
     public void addEmprestimo(Emprestimo emprestimo){
+        //if(!estaEmprestado)
         this.emprestimos.add(emprestimo);
     }
 
     public void removerEmprestimo(Emprestimo emprestimo){
         this.emprestimos.remove(emprestimo);
     }
-
-
 
     @Override
     public String toString() {

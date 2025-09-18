@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.SearchLivroController">
    <children>
       <Label layoutX="13.0" layoutY="54.0" text="Nome" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="15.0" />
-      <TextField fx:id="txPesquisar" layoutX="13.0" layoutY="77.0" promptText="Nome, autor ou categoria" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="txPesquisa" layoutX="13.0" layoutY="77.0" promptText="Nome, autor ou categoria" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="15.0" />
       <Button cancelButton="true" layoutX="79.0" layoutY="166.0" mnemonicParsing="false" onAction="#limparTela" text="Cancelar" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="23.0" />
       <Button defaultButton="true" layoutX="23.0" layoutY="166.0" mnemonicParsing="false" onAction="#buscaLivro" text="Buscar" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="92.0" />
       <Text layoutX="38.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Busque aqui">
