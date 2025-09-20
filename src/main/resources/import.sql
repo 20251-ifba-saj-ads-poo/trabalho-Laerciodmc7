@@ -1,9 +1,7 @@
--- Limpar dados para evitar duplicação (opcional, use com cuidado)
+-- Limpar dados para evitar duplicação
 DELETE FROM Livro_Categoria;
 
 DELETE FROM Livro;
-
-DELETE FROM Autor;
 
 DELETE FROM Categoria;
 
@@ -18,7 +16,7 @@ MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Cl
 MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Jose Saramago', '1922-11-16');
 MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'J.K. Rowling', '1965-07-31');
 
--- Categorias (usando MERGE para evitar duplicação)
+-- Categorias
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Ficção Científica');
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Literatura Brasileira');
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Realismo');
@@ -28,7 +26,7 @@ MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Literatura Por
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Romance');
 MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Drama');
 
--- Livros (inserção com subquery para pegar autor_id pelo nome, assumindo que nome é único)
+-- Livros
 INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
     RANDOM_UUID(),
     'Dom Casmurro',
@@ -109,9 +107,6 @@ INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
     251
 );
 
--- Associação Livro_Categoria (tabela de junção ManyToMany)
--- Ajuste o nome da tabela e colunas conforme seu esquema
--- Usando subqueries para pegar os IDs das categorias e livros pelo nome
 
 -- Dom Casmurro - Literatura Brasileira, Romance, Realismo
 INSERT INTO Livro_Categoria (livro_id, categoria_id)

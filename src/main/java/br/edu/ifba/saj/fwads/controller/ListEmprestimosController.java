@@ -2,6 +2,7 @@ package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.model.Livro;
+import br.edu.ifba.saj.fwads.model.Emprestimo;
 import br.edu.ifba.saj.fwads.service.Service;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -33,9 +34,10 @@ public class ListEmprestimosController {
 
     @FXML
     public void initialize() {
-        tblNome.setCellValueFactory(new PropertyValueFactory<>("livroEmprestado"));
+        tblNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tblStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        tblDataDevolução.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAutor().getNome()));
+        tblDataEmprestimo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataEmprestimo());
+        tblDataDevolução.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataDevolucao());
         loadLivroList();
     }
 
@@ -43,9 +45,16 @@ public class ListEmprestimosController {
         tblEmprestimos.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
     }
 
+    @FXML
     public void devolver(){
 
     }
+
+    @FXML
+    public void showHome(){
+        App.setRoot("controller/Master.fxml");
+    }
+
 
 
 }

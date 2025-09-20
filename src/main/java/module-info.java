@@ -6,10 +6,10 @@ module br.edu.ifba.saj.fwads {
     requires jakarta.validation;
     requires net.bytebuddy;
     requires java.desktop;
+    requires javafx.base;
 
 
-
-    opens br.edu.ifba.saj.fwads.controller to javafx.fxml, org.hibernate.orm.core;    
+    opens br.edu.ifba.saj.fwads.controller to javafx.fxml, org.hibernate.orm.core;
     opens br.edu.ifba.saj.fwads.model to javafx.base, javafx.fxml, org.hibernate.orm.core;   
     
     exports br.edu.ifba.saj.fwads;

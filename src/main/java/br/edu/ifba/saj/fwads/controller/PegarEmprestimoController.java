@@ -1,6 +1,9 @@
 package br.edu.ifba.saj.fwads.controller;
 
+import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.model.Livro;
+import br.edu.ifba.saj.fwads.service.BuscaService;
+import br.edu.ifba.saj.fwads.service.Service;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,8 +42,12 @@ public class PegarEmprestimoController {
 
     private ObservableList<Livro> livros = FXCollections.observableArrayList();
 
+    SearchLivroController searchLivroController = new SearchLivroController();
+    BuscaService buscaService = new BuscaService();
+    Livro livro = new Livro();
+
     @FXML
-    public void initialize() {
+    public void initialize(){
         tblTitulo.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
         tblAutor.setCellValueFactory(cellData ->
@@ -50,21 +56,18 @@ public class PegarEmprestimoController {
         tblCategoria.setCellValueFactory(cellData ->
                 new SimpleStringProperty(
                         cellData.getValue().getCategoria()
-                                .stream()
-                                .map(c -> c.getNomeCategoria())
+                                .stream().map(c -> c.getNomeCategoria())
                                 .collect(Collectors.joining(", "))
                 ));
 
         tblData.setCellValueFactory(cellData ->
                 new SimpleStringProperty(
-                        cellData.getValue().getDataLacamento() != null
-                                ? cellData.getValue().getDataLacamento().toString()
-                                : ""
+                        String.valueOf(cellData.getValue().getDataLacamento())
                 ));
 
         tblPaginas.setCellValueFactory(new PropertyValueFactory<>("qntPaginas"));
 
-        tblLivros.setItems(livros);
+        tblLivros.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
     }
 
     public void setLivros(List<Livro> resultados) {
@@ -73,10 +76,12 @@ public class PegarEmprestimoController {
 
     @FXML
     void emprestar(ActionEvent event) {
-        Livro selecionado = tblLivros.getSelectionModel().getSelectedItem();
-        if (selecionado != null) {
-            System.out.println("Emprestando livro: " + selecionado.getNome());
+        Livro selecionado = new Livro();
+        selecionado = tblLivros.getSelectionModel().getSelectedItem();
             //chamr service para registrar emprestimo
         }
+
+    public void showHome(){
+        App.setRoot("controller/Master.fxml");
     }
 }

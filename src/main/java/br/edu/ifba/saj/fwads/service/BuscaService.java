@@ -10,7 +10,6 @@ public class BuscaService extends Service<Livro>{
 
     public BuscaService(){super(Livro.class);}
 
-
     public List<Livro> buscaValida(String pesquisa) throws BuscaInvalidaException {
         List<Livro> livros = findAll();
         List<Livro> resultados = livros.stream()
