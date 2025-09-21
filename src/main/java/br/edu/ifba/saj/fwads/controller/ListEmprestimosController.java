@@ -12,22 +12,21 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import br.edu.ifba.saj.fwads.model.Emprestimo;
 
 public class ListEmprestimosController {
 
     @FXML
-    private TableColumn<Livro, String> tblNome;
+    private TableColumn<Emprestimo, String> tblNome;
 
     @FXML
-    private TableColumn<Livro, String> tblDataEmprestimo;
+    private TableColumn<Emprestimo, String> tblDataEmprestimo;
 
     @FXML
-    private TableColumn<Livro, String> tblDataDevolução;
+    private TableColumn<Emprestimo, String> tblDataDevolução;
 
     @FXML
-    private TableColumn<Livro, String> tblStatus;
+    private TableColumn<Emprestimo, String> tblStatus;
 
     @FXML
     private TableView tblEmprestimos;
@@ -36,13 +35,13 @@ public class ListEmprestimosController {
     public void initialize() {
         tblNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tblStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        tblDataEmprestimo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataEmprestimo());
-        tblDataDevolução.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataDevolucao());
+        tblDataEmprestimo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataEmprestimo())));
+        tblDataDevolução.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDataDevolução())));
         loadLivroList();
     }
 
     public void loadLivroList(){
-        tblEmprestimos.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
+        tblEmprestimos.setItems(FXCollections.observableList(new Service(Emprestimo.class).findAll()));
     }
 
     @FXML

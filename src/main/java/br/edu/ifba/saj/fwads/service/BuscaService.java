@@ -8,6 +8,18 @@ import java.util.stream.Collectors;
 
 public class BuscaService extends Service<Livro>{
 
+    // Campo estático para armazenar a lista de resultados da busca
+    private static List<Livro> resultadosDaBusca;
+
+    public static List<Livro> getResultadosDaBusca() {
+        return resultadosDaBusca;
+    }
+
+    public static void setResultadosDaBusca(List<Livro> resultados) {
+        resultadosDaBusca = resultados;
+    }
+
+
     public BuscaService(){super(Livro.class);}
 
     public List<Livro> buscaValida(String pesquisa) throws BuscaInvalidaException {

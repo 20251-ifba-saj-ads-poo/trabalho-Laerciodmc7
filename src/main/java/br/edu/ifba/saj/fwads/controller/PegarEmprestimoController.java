@@ -1,9 +1,9 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
+import br.edu.ifba.saj.fwads.exception.BuscaInvalidaException;
 import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.service.BuscaService;
-import br.edu.ifba.saj.fwads.service.Service;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,14 +40,16 @@ public class PegarEmprestimoController {
     @FXML
     private TableView<Livro> tblLivros;
 
-    private ObservableList<Livro> livros = FXCollections.observableArrayList();
+    private ObservableList<Livro>livros = FXCollections.observableArrayList();
 
     SearchLivroController searchLivroController = new SearchLivroController();
     BuscaService buscaService = new BuscaService();
-    Livro livro = new Livro();
 
     @FXML
-    public void initialize(){
+    public void initialize() throws BuscaInvalidaException {
+
+        List<Livro> resultados = buscaService.getResultadosDaBusca();
+
         tblTitulo.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
         tblAutor.setCellValueFactory(cellData ->
@@ -67,7 +69,8 @@ public class PegarEmprestimoController {
 
         tblPaginas.setCellValueFactory(new PropertyValueFactory<>("qntPaginas"));
 
-        tblLivros.setItems(FXCollections.observableList(new Service(Livro.class).findAll()));
+        tblLivros.setItems(FXCollections.observableArrayList(resultados));
+
     }
 
     public void setLivros(List<Livro> resultados) {
