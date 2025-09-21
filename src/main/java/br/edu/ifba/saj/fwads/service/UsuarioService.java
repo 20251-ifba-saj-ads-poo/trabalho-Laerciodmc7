@@ -1,12 +1,25 @@
 package br.edu.ifba.saj.fwads.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import br.edu.ifba.saj.fwads.exception.CadastroInvalidoException;
 import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
+import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.model.Usuario;
 
 public class UsuarioService extends Service<Usuario> {
+
+    // Campo estático para armazenar a lista de resultados da busca
+    private static Usuario usuarioLogado;
+
+    public static Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuario){
+
+    }
 
     public UsuarioService() {
         super(Usuario.class);
@@ -35,7 +48,6 @@ public class UsuarioService extends Service<Usuario> {
         if(usuario.getCpf().length() < 11 || usuario.getCpf().length() > 14 || usuario.getCpf().isBlank()){
             throw new CadastroInvalidoException("Cpf inválido.");
         }
-
         //cadastrando usuario
         create(usuario);
     }

@@ -21,16 +21,18 @@ public class LoginController {
     private PasswordField txSenha; // Value injected by FXMLLoader
 
     @FXML // fx:id="txUsuario"
-    private TextField txUsuario; // Value injected by FXMLLoader
+    private TextField txUsuario;
 
     private UsuarioService usuarioService = new UsuarioService();
 
     @FXML
     void entrar(ActionEvent event) {
-        
         try {
             Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
             App.setRoot("controller/Master.fxml");
+
+            usuarioService.setUsuarioLogado(usuario);
+
             MasterController controller = (MasterController) App.getController();
             controller.setUsuarioLogado(usuario);
         } catch (LoginInvalidoException e) {

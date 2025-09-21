@@ -2,13 +2,18 @@ package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.exception.BuscaInvalidaException;
+import br.edu.ifba.saj.fwads.exception.EmprestimoInvalidoException;
 import br.edu.ifba.saj.fwads.model.Livro;
+import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.BuscaService;
+import br.edu.ifba.saj.fwads.service.EmprestimoService;
+import br.edu.ifba.saj.fwads.service.UsuarioService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,8 +47,11 @@ public class PegarEmprestimoController {
 
     private ObservableList<Livro>livros = FXCollections.observableArrayList();
 
-    SearchLivroController searchLivroController = new SearchLivroController();
     BuscaService buscaService = new BuscaService();
+    EmprestimoService emprestimoService = new EmprestimoService();
+    UsuarioService usuarioService = new UsuarioService();
+    LoginController loginController = new LoginController();
+
 
     @FXML
     public void initialize() throws BuscaInvalidaException {
@@ -73,16 +81,22 @@ public class PegarEmprestimoController {
 
     }
 
-    public void setLivros(List<Livro> resultados) {
-        livros.setAll(resultados);
-    }
 
     @FXML
     void emprestar(ActionEvent event) {
-        Livro selecionado = new Livro();
-        selecionado = tblLivros.getSelectionModel().getSelectedItem();
-            //chamr service para registrar emprestimo
+        // Pega o livro selecionado da tabela
+        Livro selecionado = tblLivros.getSelectionModel().getSelectedItem();
+
+        try {
+            emprestimoService.validaEmprestimo(selecionado, usuarioService.getUsuarioLogado());
+            new Alert(Alert.AlertType.INFORMATION, "Livro emprestado com sucesso!").showAndWait();
+        } catch (EmprestimoInvalidoException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "ERRO! Não foi possível realizar o empréstimo.").showAndWait();
+            e.printStackTrace();
         }
+    }
 
     public void showHome(){
         App.setRoot("controller/Master.fxml");

@@ -23,7 +23,7 @@ public class Emprestimo extends AbstractEntity{
 
     @Column
     @NotNull
-    private LocalDate dataDevolução;
+    private LocalDate dataDevolucao;
 
     @Column
     @NotBlank
@@ -39,7 +39,7 @@ public class Emprestimo extends AbstractEntity{
         this.usuario = usuario;
         this.livroEmprestado = livroEmprestado;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolução;
         this.status = status;
     }
 
@@ -71,12 +71,12 @@ public class Emprestimo extends AbstractEntity{
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public LocalDate getDataDevolução() {
-        return dataDevolução;
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
     }
 
     public void setDataDevolução(LocalDate dataDevolução) {
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolução;
     }
 
     public String getStatus() {
@@ -93,7 +93,7 @@ public class Emprestimo extends AbstractEntity{
                 "usuario=" + usuario +
                 ", livroEmprestado=" + livroEmprestado +
                 ", dataEmprestimo=" + dataEmprestimo +
-                ", dataDevolução=" + dataDevolução +
+                ", dataDevolução=" + dataDevolucao +
                 ", status='" + status + '\'' +
                 '}';
     }
