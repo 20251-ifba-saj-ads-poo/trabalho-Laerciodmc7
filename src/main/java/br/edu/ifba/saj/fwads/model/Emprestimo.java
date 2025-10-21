@@ -75,8 +75,8 @@ public class Emprestimo extends AbstractEntity{
         return dataDevolucao;
     }
 
-    public void setDataDevolução(LocalDate dataDevolução) {
-        this.dataDevolucao = dataDevolução;
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public String getStatus() {

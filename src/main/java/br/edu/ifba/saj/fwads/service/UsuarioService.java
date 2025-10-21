@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import br.edu.ifba.saj.fwads.exception.CadastroInvalidoException;
 import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
-import br.edu.ifba.saj.fwads.model.Livro;
 import br.edu.ifba.saj.fwads.model.Usuario;
 
 public class UsuarioService extends Service<Usuario> {
@@ -17,8 +16,8 @@ public class UsuarioService extends Service<Usuario> {
         return usuarioLogado;
     }
 
-    public void setUsuarioLogado(Usuario usuario){
-
+    public static void setUsuarioLogado(Usuario usuario){
+        UsuarioService.usuarioLogado = usuario;
     }
 
     public UsuarioService() {

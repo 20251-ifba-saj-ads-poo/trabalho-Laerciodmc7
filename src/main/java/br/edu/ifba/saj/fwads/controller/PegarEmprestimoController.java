@@ -48,8 +48,8 @@ public class PegarEmprestimoController {
     private ObservableList<Livro>livros = FXCollections.observableArrayList();
 
     BuscaService buscaService = new BuscaService();
-    EmprestimoService emprestimoService = new EmprestimoService();
     UsuarioService usuarioService = new UsuarioService();
+    EmprestimoService emprestimoService = new EmprestimoService(usuarioService);
     LoginController loginController = new LoginController();
 
 
@@ -88,7 +88,7 @@ public class PegarEmprestimoController {
         Livro selecionado = tblLivros.getSelectionModel().getSelectedItem();
 
         try {
-            emprestimoService.validaEmprestimo(selecionado, usuarioService.getUsuarioLogado());
+            emprestimoService.validaEmprestimo( usuarioService.getUsuarioLogado(), selecionado);
             new Alert(Alert.AlertType.INFORMATION, "Livro emprestado com sucesso!").showAndWait();
         } catch (EmprestimoInvalidoException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();

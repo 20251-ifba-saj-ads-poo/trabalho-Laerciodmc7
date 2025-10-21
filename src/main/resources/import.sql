@@ -5,10 +5,6 @@ DELETE FROM Livro;
 
 DELETE FROM Categoria;
 
-
--- Usuário já cadastrado
-MERGE INTO Usuario (id, userName, senha) KEY(userName) VALUES (RANDOM_UUID(), 'admin', 'admin');
-
 -- Autores (usando MERGE para evitar duplicação, com RANDOM_UUID() só na primeira inserção)
 MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Machado de Assis', '1839-06-21');
 MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'George Orwell', '1903-06-25');
