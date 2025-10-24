@@ -33,6 +33,28 @@ public class UsuarioService extends Service<Usuario> {
         }
     }
 
+    public Usuario recarregarUsuarioLogado() {
+        Usuario usuarioAtual = getUsuarioLogado();
+
+        if (usuarioAtual != null) {
+            try {
+                Usuario usuario = findByMap(Map.of("userName", usuarioAtual.getUserName())).getFirst();
+
+                if (usuario != null) {
+
+                    setUsuarioLogado(usuario);
+                    return usuario;
+                }
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                return usuarioAtual;
+            }
+        }
+        return null;
+    }
+
+
     public void validaCadastro(Usuario usuario) throws CadastroInvalidoException{
 
         if(usuario.getNomeCompleto().length() < 5|| usuario.getNomeCompleto() == null || usuario.getNomeCompleto().isBlank()){

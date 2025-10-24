@@ -12,37 +12,30 @@ public class EmprestimoService extends Service<Emprestimo> {
     private final UsuarioService usuarioService;
     private final Service<Livro> livroMerger;
 
-    // Construtor corrigido para injetar dependências (necessário para o merge)
     public EmprestimoService(UsuarioService usuarioService) {
         super(Emprestimo.class);
         this.usuarioService = usuarioService;
-        this.livroMerger = new Service<>(Livro.class); // Usa o Service genérico para Livro
+        this.livroMerger = new Service<>(Livro.class);
     }
 
     public void validaEmprestimo(Usuario usuario, Livro livro) throws EmprestimoInvalidoException {
 
-        // 1. Validações de entrada (Checagem de Null)
         if (usuario == null || livro == null) {
             throw new EmprestimoInvalidoException("Usuário não logado ou livro não selecionado.");
         }
 
-        // 2. CORREÇÃO CRÍTICA: RE-ANEXAR OBJETOS com MERGE/UPDATE
-        // Isso resolve o erro de chave estrangeira 23506 ao reintroduzir os objetos na transação.
         Usuario managedUsuario = usuarioService.update(usuario);
         Livro managedLivro = livroMerger.update(livro);
 
-        // 3. Validação do Limite e Duplicidade (Usando managedUsuario)
-        if (managedUsuario.getEmprestimos() == null) {
-            managedUsuario.setEmprestimos(new ArrayList<>());
+        // A lógica de validação deve ser feita na lista de empréstimos:
+        if (managedUsuario.getEmprestimos().size() >= 3){ // USANDO SEU LIMITE FIXO DE 3
+            throw new EmprestimoInvalidoException("Você já atingiu seu limite de 3 empréstimos.");
         }
-        if (managedUsuario.getEmprestimos().size() >= 3 ){
-            throw new EmprestimoInvalidoException("Você já atingiu seu limite de " + 3 + " empréstimos.");
-        }
+
         if (managedUsuario.getEmprestimos().stream().anyMatch(e -> e.getLivroEmprestado().equals(managedLivro))) {
             throw new EmprestimoInvalidoException("Este livro já está na sua lista de empréstimos.");
         }
 
-        // 4. CRIAÇÃO E PERSISTÊNCIA
         Emprestimo novoEmprestimo = new Emprestimo();
         novoEmprestimo.setUsuario(managedUsuario);
         novoEmprestimo.setLivroEmprestado(managedLivro);
@@ -50,8 +43,12 @@ public class EmprestimoService extends Service<Emprestimo> {
         novoEmprestimo.setDataDevolucao(LocalDate.now().plusDays(7));
         novoEmprestimo.setStatus("Emprestado");
 
-        // 5. Persiste e atualiza o objeto gerenciado
+        //PERSISTÊNCIA
+        // Adiciona à lista gerenciada e persiste
         managedUsuario.getEmprestimos().add(novoEmprestimo);
         create(novoEmprestimo);
+
+        // ATUALIZAÇÃO DA SESSÃO GLOBAL
+        UsuarioService.setUsuarioLogado(managedUsuario);
     }
 }

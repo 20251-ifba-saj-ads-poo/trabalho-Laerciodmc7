@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -29,9 +30,9 @@ public class Usuario extends AbstractEntity {
     @NotBlank
     private String senha;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotEmpty
-    private List<Emprestimo> emprestimos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Emprestimo> emprestimos = new ArrayList<>();
 
     public Usuario(
             @NotBlank @Size(min = 5) String nomeCompleto,
@@ -44,9 +45,9 @@ public class Usuario extends AbstractEntity {
         this.userName = userName;
         this.cpf = cpf;
         this.senha = senha;
-        this.emprestimos = emprestimos;
+        // Garante que a lista não seja nula
+        this.emprestimos = emprestimos != null ? emprestimos : new ArrayList<>();
     }
-
     public Usuario(){
 
     }
@@ -94,10 +95,6 @@ public class Usuario extends AbstractEntity {
     public void addEmprestimo(Emprestimo emprestimo){
         //if(!estaEmprestado)
         this.emprestimos.add(emprestimo);
-    }
-
-    public void removerEmprestimo(Emprestimo emprestimo){
-        this.emprestimos.remove(emprestimo);
     }
 
     @Override

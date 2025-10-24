@@ -29,17 +29,13 @@ public class LoginController {
     void entrar(ActionEvent event) {
         try {
             Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
-
-            // 1. Armazene o usuário na Sessão (para outras telas)
+            usuarioService.recarregarUsuarioLogado();
             usuarioService.setUsuarioLogado(usuario);
-
-            // 2. Navegue para a tela Master
             App.setRoot("controller/Master.fxml");
 
         } catch (LoginInvalidoException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
         } catch (Exception e){
-            // AQUI ESTÁ A CORREÇÃO: Força a exibição do erro no console
             e.printStackTrace();
             new Alert(AlertType.ERROR, "ERRO: Falha ao autenticar. Verifique o console para detalhes.").showAndWait();
         }
