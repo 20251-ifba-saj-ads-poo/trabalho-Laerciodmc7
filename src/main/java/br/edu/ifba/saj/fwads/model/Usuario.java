@@ -1,10 +1,7 @@
 package br.edu.ifba.saj.fwads.model;
 
-import java.util.UUID;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 

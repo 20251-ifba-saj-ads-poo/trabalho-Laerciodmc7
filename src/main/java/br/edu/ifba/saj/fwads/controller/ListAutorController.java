@@ -1,20 +1,12 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
-import br.edu.ifba.saj.fwads.model.Autor;
 import br.edu.ifba.saj.fwads.model.Usuario;
-import br.edu.ifba.saj.fwads.service.Service;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ListAutorController {
@@ -43,7 +35,7 @@ public class ListAutorController {
 
     @FXML
     public void initialize() {
-        // 1. Associar as colunas aos atributos da classe Usuario
+        // Associa as colunas aos atributos da classe Usuario
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         columnUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         columnCPF.setCellValueFactory(new PropertyValueFactory<>("cpfUsuario"));

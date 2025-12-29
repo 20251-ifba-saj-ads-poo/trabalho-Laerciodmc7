@@ -1,6 +1,7 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
+import br.edu.ifba.saj.fwads.SessionContext;
 import br.edu.ifba.saj.fwads.exception.BuscaInvalidaException;
 import br.edu.ifba.saj.fwads.exception.EmprestimoInvalidoException;
 import br.edu.ifba.saj.fwads.model.Livro;
@@ -49,7 +50,7 @@ public class PegarEmprestimoController {
 
     BuscaService buscaService = new BuscaService();
     UsuarioService usuarioService = new UsuarioService();
-    EmprestimoService emprestimoService = new EmprestimoService(usuarioService);
+    EmprestimoService emprestimoService = new EmprestimoService();
     LoginController loginController = new LoginController();
 
 
@@ -86,9 +87,10 @@ public class PegarEmprestimoController {
     void emprestar(ActionEvent event) {
         // Pega o livro selecionado da tabela
         Livro selecionado = tblLivros.getSelectionModel().getSelectedItem();
+         Usuario usuario = SessionContext.getUsuarioLogado();
 
         try {
-            emprestimoService.validaEmprestimo( usuarioService.getUsuarioLogado(), selecionado);
+            emprestimoService.validaEmprestimo(usuario, selecionado);
             new Alert(Alert.AlertType.INFORMATION, "Livro emprestado com sucesso!").showAndWait();
         } catch (EmprestimoInvalidoException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();

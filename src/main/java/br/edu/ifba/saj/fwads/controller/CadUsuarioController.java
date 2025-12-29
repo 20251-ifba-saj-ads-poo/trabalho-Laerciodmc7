@@ -6,8 +6,6 @@ import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.exception.CadastroInvalidoException;
 import br.edu.ifba.saj.fwads.model.Emprestimo;
 import br.edu.ifba.saj.fwads.model.Usuario;
-import br.edu.ifba.saj.fwads.service.BuscaService;
-import br.edu.ifba.saj.fwads.service.Service;
 import br.edu.ifba.saj.fwads.service.UsuarioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +36,7 @@ public class CadUsuarioController {
         this.listLivroController = listLivroController;
     }
 
+    
     @FXML
     void salvarUsuario(ActionEvent event) throws CadastroInvalidoException {
         try {
@@ -49,7 +48,7 @@ public class CadUsuarioController {
                     "Usuario:"+novoUsuario.getUserName()+" cadastrado com sucesso!").showAndWait();
             limparTela();
             if (listLivroController!=null) {
-                listLivroController.loadLivroList();
+                listLivroController.loadEmprestimos();
             }
         }
         catch (CadastroInvalidoException e){

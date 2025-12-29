@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Service<T extends AbstractEntity> {
 
-    private Repository<T> repository;
+    protected Repository<T> repository;
 
     private final Class<T> entityClass;
 

@@ -1,6 +1,6 @@
 package br.edu.ifba.saj.fwads.service;
 
-import java.util.List;
+
 import java.util.Map;
 import java.util.NoSuchElementException;
 import br.edu.ifba.saj.fwads.exception.CadastroInvalidoException;
@@ -9,21 +9,12 @@ import br.edu.ifba.saj.fwads.model.Usuario;
 
 public class UsuarioService extends Service<Usuario> {
 
-    // Campo estático para armazenar a lista de resultados da busca
-    private static Usuario usuarioLogado;
-
-    public static Usuario getUsuarioLogado() {
-        return usuarioLogado;
-    }
-
-    public static void setUsuarioLogado(Usuario usuario){
-        UsuarioService.usuarioLogado = usuario;
-    }
 
     public UsuarioService() {
         super(Usuario.class);
     }
 
+    // Valida o login do usuário
     public Usuario validaLogin(String userName, String senha) throws LoginInvalidoException {
         try {
             return findByMap(Map.of("userName", userName, "senha", senha)).getFirst();
@@ -33,28 +24,7 @@ public class UsuarioService extends Service<Usuario> {
         }
     }
 
-    public Usuario recarregarUsuarioLogado() {
-        Usuario usuarioAtual = getUsuarioLogado();
-
-        if (usuarioAtual != null) {
-            try {
-                Usuario usuario = findByMap(Map.of("userName", usuarioAtual.getUserName())).getFirst();
-
-                if (usuario != null) {
-
-                    setUsuarioLogado(usuario);
-                    return usuario;
-                }
-            } catch (Exception e) {
-
-                e.printStackTrace();
-                return usuarioAtual;
-            }
-        }
-        return null;
-    }
-
-
+    // Valida o cadastro do usuário
     public void validaCadastro(Usuario usuario) throws CadastroInvalidoException{
 
         if(usuario.getNomeCompleto().length() < 5|| usuario.getNomeCompleto() == null || usuario.getNomeCompleto().isBlank()){

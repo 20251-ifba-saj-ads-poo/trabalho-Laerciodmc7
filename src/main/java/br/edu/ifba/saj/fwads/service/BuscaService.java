@@ -1,7 +1,6 @@
 package br.edu.ifba.saj.fwads.service;
 
 import br.edu.ifba.saj.fwads.exception.BuscaInvalidaException;
-import br.edu.ifba.saj.fwads.model.Categoria;
 import br.edu.ifba.saj.fwads.model.Livro;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +21,7 @@ public class BuscaService extends Service<Livro>{
 
     public BuscaService(){super(Livro.class);}
 
+    // Realiza uma busca válida com base no termo de pesquisa fornecido
     public List<Livro> buscaValida(String pesquisa) throws BuscaInvalidaException {
         List<Livro> livros = findAll();
         List<Livro> resultados = livros.stream()

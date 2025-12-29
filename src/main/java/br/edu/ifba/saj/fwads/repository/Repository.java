@@ -33,11 +33,13 @@ public class Repository<T extends AbstractEntity> {
 
     public Repository(Class<T> entityClass) {
         this.entityClass = entityClass;
-        runImport();
+        // runImport();
     }
 
+    
+    // CAMPO "REMOVIDO" PARA EVITAR ERRO DE COMPILAÇÃO
     //executa o import.sql nos casos do hibernate update
-    private void runImport() {
+    /*private void runImport() {
         try {
             EntityManager entityManager = sessionFactory.createEntityManager();
             entityManager.getTransaction().begin();
@@ -57,7 +59,7 @@ public class Repository<T extends AbstractEntity> {
             throw new ExceptionInInitializerError(ex);
         }
 
-    }
+    }    */
 
     public T create(T entity) {
         EntityManager entityManager = sessionFactory.createEntityManager();
@@ -119,4 +121,31 @@ public class Repository<T extends AbstractEntity> {
         cq.select(qb.count(cq.from(entityClass)));
         return entityManager.createQuery(cq).getSingleResult();
     }
+
+    public List<T> findByRelation(String relation, String attribute, Object value) {
+    EntityManager entityManager = sessionFactory.createEntityManager();
+
+    String jpql = "select t from " + entityClass.getSimpleName() + " t "
+                + "join t." + relation + " r "
+                + "where r." + attribute + " = :value";
+
+    return entityManager
+            .createQuery(jpql, entityClass)
+            .setParameter("value", value)
+            .getResultList();
+}
+
+public List<T> findByQuery(String jpql, Map<String, Object> params) {
+
+    EntityManager em = sessionFactory.createEntityManager();
+    Query query = em.createQuery(jpql);
+
+    params.forEach(query::setParameter);
+
+    List<T> result = query.getResultList();
+    em.close();
+
+    return result;
+}
+
 }

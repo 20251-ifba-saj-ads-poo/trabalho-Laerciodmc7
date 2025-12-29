@@ -5,6 +5,7 @@
 package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
+import br.edu.ifba.saj.fwads.SessionContext;
 import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
 import br.edu.ifba.saj.fwads.model.Usuario;
 import br.edu.ifba.saj.fwads.service.UsuarioService;
@@ -25,21 +26,30 @@ public class LoginController {
 
     private UsuarioService usuarioService = new UsuarioService();
 
-    @FXML
+  @FXML
     void entrar(ActionEvent event) {
         try {
-            Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
-            usuarioService.recarregarUsuarioLogado();
-            usuarioService.setUsuarioLogado(usuario);
+            Usuario usuario = usuarioService.validaLogin(
+                txUsuario.getText(),
+                txSenha.getText()
+            );
+
+            SessionContext.login(usuario);
+
             App.setRoot("controller/Master.fxml");
 
         } catch (LoginInvalidoException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(AlertType.ERROR, "ERRO: Falha ao autenticar. Verifique o console para detalhes.").showAndWait();
-        }
+            new Alert(
+                AlertType.ERROR,
+                "Erro inesperado ao autenticar. Verifique o console."
+            ).showAndWait();
     }
+}
+
 
     @FXML
     public void criarUsuario(ActionEvent event){
