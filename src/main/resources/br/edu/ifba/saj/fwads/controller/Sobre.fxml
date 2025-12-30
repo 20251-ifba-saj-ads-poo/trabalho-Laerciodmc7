@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" vbarPolicy="ALWAYS" vvalue="1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="br.edu.ifba.saj.fwads.controller.SobreController">
+   <content>
+      <AnchorPane prefHeight="1110.0" prefWidth="1110.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);">
+         <children>
+            <AnchorPane layoutX="81.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="avatar" stylesheets="@assets/style.css" AnchorPane.bottomAnchor="820.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="75.0">
+               <children>
+                  <TextFlow layoutX="109.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Olá!Meu nome é Laercio Souza Damacena, sou estudante de Análise e Desenvolvimento de Sistemas e atualmente atuo como estagiário na área de Tecnologia da Informação. Estou em constante processo de aprendizado, buscando consolidar minha base técnica e desenvolver soluções de forma responsável e eficiente.Este sistema foi desenvolvido como parte do meu processo de formação, unindo estudo, prática e evolução contínua na área de tecnologia.">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+               </children>
+            </AnchorPane>
+            <Text layoutX="57.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobre desenvolvedor" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="System Italic" size="27.0" />
+               </font>
+            </Text>
+            <AnchorPane layoutX="65.0" layoutY="404.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;" styleClass="avatar" stylesheets="@assets/style.css" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="355.0">
+               <children>
+                  <TextFlow layoutX="109.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este sistema foi desenvolvido com o objetivo de simular uma biblioteca digital, permitindo o gerenciamento de livros, usuários e empréstimos de forma simples, organizada e funcional. A proposta é oferecer uma experiência clara e intuitiva, aproximando o usuário da lógica de funcionamento de sistemas reais utilizados para controle de acervos virtuais, mesmo se tratando de um projeto acadêmico.O desenvolvimento da aplicação teve como foco o aprendizado prático de conceitos fundamentais de programação orientada a objetos, arquitetura de software e persistência de dados. Ao longo do processo, buscou-se estruturar o sistema de maneira organizada, separando responsabilidades e facilitando tanto a manutenção quanto a evolução do código. Mais do que implementar funcionalidades, a ideia central foi compreender a lógica por trás de um sistema completo, desde a interface gráfica até as regras de negócio e o armazenamento das informações.A aplicação foi construída utilizando Java como linguagem principal, com JavaFX e FXML para o desenvolvimento da interface gráfica, proporcionando uma navegação visual simples e agradável. Para a persistência dos dados, foi utilizada a Java Persistence API (JPA), com o Hibernate como implementação, em conjunto com um banco de dados local. A arquitetura adotada segue princípios do padrão MVC, contribuindo para um código mais limpo, reutilizável e alinhado com boas práticas de desenvolvimento.Este projeto representa não apenas um trabalho acadêmico, mas também um marco no processo de aprendizado do desenvolvedor, refletindo a evolução técnica, a superação de desafios e a busca por soluções mais bem estruturadas. O sistema foi pensado para ser funcional no presente, mas também flexível o suficiente para receber melhorias e novas funcionalidades no futuro, acompanhando o crescimento profissional e técnico de quem o desenvolveu.">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+               </children>
+            </AnchorPane>
+            <Text layoutX="69.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobre desenvolvedor" AnchorPane.topAnchor="310.0">
+               <font>
+                  <Font name="System Italic" size="27.0" />
+               </font>
+            </Text>
+            <Button fx:id="bntSair" alignment="TOP_LEFT" layoutX="31.0" layoutY="1033.0" mnemonicParsing="false" onAction="#sair" prefHeight="50.0" prefWidth="109.0" style="-fx-background-color: linear-gradient(to bottom, #1c1c2e, #12121b);" styleClass="avatar" text="Sair" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="969.8000000000001">
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/SairIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </AnchorPane>
+   </content>
+</ScrollPane>

@@ -1,63 +1,155 @@
-DELETE FROM Emprestimo;
+-- Limpar dados para evitar duplicação
 DELETE FROM Livro_Categoria;
+
 DELETE FROM Livro;
+
 DELETE FROM Categoria;
-DELETE FROM Autor;
+
+-- Autores (usando MERGE para evitar duplicação, com RANDOM_UUID() só na primeira inserção)
+MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Machado de Assis', '1839-06-21');
+MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'George Orwell', '1903-06-25');
+MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Clarice Lispector', '1920-12-10');
+MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'Jose Saramago', '1922-11-16');
+MERGE INTO Autor (id, nome, dataNascimento) KEY(nome) VALUES (RANDOM_UUID(), 'J.K. Rowling', '1965-07-31');
+
+-- Categorias
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Ficção Científica');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Literatura Brasileira');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Realismo');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Distopia');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Fantasia');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Literatura Portuguesa');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Romance');
+MERGE INTO Categoria (id, nome) KEY(nome) VALUES (RANDOM_UUID(), 'Drama');
+
+-- Livros
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Dom Casmurro',
+    '1899-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Machado de Assis' LIMIT 1),
+    256
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Memórias Póstumas de Brás Cubas',
+    '1881-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Machado de Assis' LIMIT 1),
+    224
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    '1984',
+    '1949-06-08',
+    (SELECT id FROM Autor WHERE nome = 'George Orwell' LIMIT 1),
+    328
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'c',
+    '1945-08-17',
+    (SELECT id FROM Autor WHERE nome = 'George Orwell' LIMIT 1),
+    112
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'A Hora da Estrela',
+    '1977-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Clarice Lispector' LIMIT 1),
+    96
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Perto do Coração Selvagem',
+    '1943-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Clarice Lispector' LIMIT 1),
+    192
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Ensaio sobre a Cegueira',
+    '1995-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Jose Saramago' LIMIT 1),
+    352
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'O Evangelho Segundo Jesus Cristo',
+    '1991-01-01',
+    (SELECT id FROM Autor WHERE nome = 'Jose Saramago' LIMIT 1),
+    336
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Harry Potter e a Pedra Filosofal',
+    '1997-06-26',
+    (SELECT id FROM Autor WHERE nome = 'J.K. Rowling' LIMIT 1),
+    223
+);
+
+INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas) VALUES (
+    RANDOM_UUID(),
+    'Harry Potter e a Câmara Secreta',
+    '1998-07-02',
+    (SELECT id FROM Autor WHERE nome = 'J.K. Rowling' LIMIT 1),
+    251
+);
 
 
-MERGE INTO Usuario (id, userName, senha, nomeCompleto, cpf)
-KEY(userName)
-VALUES ('00000000-0000-0000-0000-000000000001', 'admin', 'admin', 'Administrador Padrão', '000.000.000-00');
+-- Dom Casmurro - Literatura Brasileira, Romance, Realismo
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Dom Casmurro' AND c.nome IN ('Literatura Brasileira', 'Romance', 'Realismo');
 
+-- Memórias Póstumas de Brás Cubas - Literatura Brasileira, Romance, Realismo
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Memórias Póstumas de Brás Cubas' AND c.nome IN ('Literatura Brasileira', 'Romance', 'Realismo');
 
-INSERT INTO Autor (id, nome, dataNascimento) VALUES ('10000000-0000-0000-0000-000000000001', 'J.K. Rowling', '1965-07-31');
-INSERT INTO Autor (id, nome, dataNascimento) VALUES ('10000000-0000-0000-0000-000000000002', 'George Orwell', '1903-06-25');
-INSERT INTO Autor (id, nome, dataNascimento) VALUES ('10000000-0000-0000-0000-000000000003', 'Clarice Lispector', '1920-12-10');
-INSERT INTO Autor (id, nome, dataNascimento) VALUES ('10000000-0000-0000-0000-000000000004', 'Machado de Assis', '1839-06-21');
-INSERT INTO Autor (id, nome, dataNascimento) VALUES ('10000000-0000-0000-0000-000000000005', 'Jane Austen', '1775-12-16');
+-- 1984 - Ficção Científica, Distopia
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = '1984' AND c.nome IN ('Ficção Científica', 'Distopia');
 
+-- A Revolução dos Bichos - Ficção Científica, Distopia
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'A Revolução dos Bichos' AND c.nome IN ('Ficção Científica', 'Distopia');
 
-INSERT INTO Categoria (id, nome) VALUES ('20000000-0000-0000-0000-000000000001', 'Fantasia');
-INSERT INTO Categoria (id, nome) VALUES ('20000000-0000-0000-0000-000000000002', 'Distopia');
-INSERT INTO Categoria (id, nome) VALUES ('20000000-0000-0000-0000-000000000003', 'Romance');
-INSERT INTO Categoria (id, nome) VALUES ('20000000-0000-0000-0000-000000000004', 'Clássico');
-INSERT INTO Categoria (id, nome) VALUES ('20000000-0000-0000-0000-000000000005', 'Literatura Brasileira');
+-- A Hora da Estrela - Literatura Brasileira, Romance, Drama
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'A Hora da Estrela' AND c.nome IN ('Literatura Brasileira', 'Romance', 'Drama');
 
-INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas)
-VALUES ('30000000-0000-0000-0000-000000000001', 'Harry Potter e a Pedra Filosofal', '1997-06-26', '10000000-0000-0000-0000-000000000001', 223);
+-- Perto do Coração Selvagem - Literatura Brasileira, Romance, Drama
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Perto do Coração Selvagem' AND c.nome IN ('Literatura Brasileira', 'Romance', 'Drama');
 
+-- Ensaio sobre a Cegueira - Literatura Portuguesa, Ficção Científica, Drama
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Ensaio sobre a Cegueira' AND c.nome IN ('Literatura Portuguesa', 'Ficção Científica', 'Drama');
 
-INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas)
-VALUES ('30000000-0000-0000-0000-000000000002', '1984', '1949-06-08', '10000000-0000-0000-0000-000000000002', 328);
+-- O Evangelho Segundo Jesus Cristo - Literatura Portuguesa, Romance, Drama
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'O Evangelho Segundo Jesus Cristo' AND c.nome IN ('Literatura Portuguesa', 'Romance', 'Drama');
 
+-- Harry Potter e a Pedra Filosofal - Fantasia, Romance
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Harry Potter e a Pedra Filosofal' AND c.nome IN ('Fantasia', 'Romance');
 
-INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas)
-VALUES ('30000000-0000-0000-0000-000000000003', 'A Hora da Estrela', '1977-01-01', '10000000-0000-0000-0000-000000000003', 96);
-
-
-INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas)
-VALUES ('30000000-0000-0000-0000-000000000004', 'Dom Casmurro', '1899-01-01', '10000000-0000-0000-0000-000000000004', 256);
-
-
-INSERT INTO Livro (id, nome, dataLancamento, autor_id, qntPaginas)
-VALUES ('30000000-0000-0000-0000-000000000005', 'Orgulho e Preconceito', '1813-01-28', '10000000-0000-0000-0000-000000000005', 432);
-
-
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001');
-INSERT INTO Livro_Categoria (livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003');
-
-
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000002');
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000001');
-
-
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-000000000005');
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-000000000003');
-
-
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000004', '20000000-0000-0000-0000-000000000005');
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000004', '20000000-0000-0000-0000-000000000004');
-
-
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000005', '20000000-0000-0000-0000-000000000003');
-INSERT INTO Livro_Categoria (Livro_id, categoria_id) VALUES ('30000000-0000-0000-0000-000000000005', '20000000-0000-0000-0000-000000000004');
+-- Harry Potter e a Câmara Secreta - Fantasia, Romance
+INSERT INTO Livro_Categoria (livro_id, categoria_id)
+SELECT l.id, c.id FROM Livro l, Categoria c
+WHERE l.nome = 'Harry Potter e a Câmara Secreta' AND c.nome IN ('Fantasia', 'Romance');

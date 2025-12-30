@@ -76,6 +76,7 @@ public class MasterController {
 
     @FXML
     public void showSobre(ActionEvent event){
+        App.setRoot("controller/Sobre.fxml");
 
     }
 
