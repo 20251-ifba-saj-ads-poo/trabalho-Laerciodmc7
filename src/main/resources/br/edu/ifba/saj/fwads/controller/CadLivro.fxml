@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="263.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.CadLivroController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="263.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.CadLivroController">
    <children>
       <Label fx:id="lbTitulo" layoutX="14.0" layoutY="14.0" text="Nome completo" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
       <TextField fx:id="txNome" layoutX="14.0" layoutY="32.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />

@@ -6,6 +6,8 @@ import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,6 +16,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import java.io.IOException;
 
 public class MasterController {
 
@@ -68,10 +74,27 @@ public class MasterController {
     }
 
     @FXML
-    public void showCadastro(ActionEvent event){
+    public void showCadastro(ActionEvent event) throws IOException {
+
         limparBotoes(event.getSource());
-        App.setRoot("controller/ListCadastro.fxml");
+
+        FXMLLoader loader = new FXMLLoader(
+                App.class.getResource("controller/CadUsuario.fxml")
+        );
+
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UTILITY);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.sizeToScene();
+        stage.setTitle("Cadastro de Usuário");
+        stage.showAndWait();
     }
+
+
 
 
     @FXML

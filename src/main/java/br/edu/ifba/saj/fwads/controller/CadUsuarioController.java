@@ -69,7 +69,4 @@ public class CadUsuarioController {
         App.setRoot("controller/Login.fxml");
         //new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();
     }
-
-    
-
 }
